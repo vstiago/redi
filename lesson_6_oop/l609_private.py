@@ -53,7 +53,7 @@ for value in [True, True, True, False, True]:
 print(f'John attendance {100 * john.attendance()}%')
 
 
-for value in [False, False, True]:
+for value in [False, False, False, True]:
     lucy.add_attendance(value)
 
 
@@ -68,7 +68,7 @@ print(lucy.__attendance)
 
 # ... but inside the class the value didn't change.
 print(f'Lucy attendance {100 * lucy.attendance()}%')
-# Lucy attendance 100.0%
+# Lucy attendance 25.0%
 
 
 # There is one way to access the private attribute.
@@ -83,5 +83,5 @@ print(vars(lucy))
 # {'full_name': 'Lucy Schwarz', 'first_name': 'Lucy', 'birthday': '2010-07-08',
 # 'courses': {'Math', 'Dance', 'English'},
 # '_grades': {'Math': 0.0, 'Dance': 0.0, 'English': 0.0},
-# '_Student__attendance': [False, False, True],
+# '_Student__attendance': [False, False, False, True],
 # '__attendance': [True]}

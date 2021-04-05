@@ -5,6 +5,9 @@ class Address:
         self.postal_code = postal_code
         self.city = city
 
+    def __str__(self):
+        return f'{self.street} {self.number}\n{self.postal_code} - {self.city}'
+
 
 class Student:
     def __init__(self, name, birthday, address, courses):
@@ -24,7 +27,7 @@ class Student:
         self.__address = address
 
     def print_address(self):
-        print(self.__address.street, self.__address.number)
+        print(self.__address)
 
 
 class Teacher:
@@ -45,5 +48,7 @@ tiago = Teacher('Tiago Vieira',
 
 john.print_address()
 # LandsbergerStrasse 40
+# 80780 - München
+
 print(tiago.address.city)
 # Berlin

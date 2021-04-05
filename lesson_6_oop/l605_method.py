@@ -15,7 +15,7 @@ class Student:
     # The first parameter is the object calling it!
     # 'self' is used as convention, but it can be any other name.
     # Other languages call it 'this'
-    def is_colleagues(self, other):
+    def is_colleague(self, other):
         course_intersection = self.courses.intersection(other.courses)
         return len(course_intersection) != 0
 
@@ -28,15 +28,15 @@ lucy = Student('Lucy Schwarz', '2010-07-08', {'English', 'Math', 'Dance'})
 
 
 # Calling the method from the class.
-if Student.is_colleagues(john, mary):  # True
+if Student.is_colleague(john, mary):  # True
     print(f'{john.first_name} and {mary.first_name} are colleagues')
 
 
 # Or we can call it from the object.
-if john.is_colleagues(lucy):  # False
+if john.is_colleague(lucy):  # False
     print(f'{john.first_name} and {lucy.first_name} are colleagues')
 
-if mary.is_colleagues(lucy):  # True
+if mary.is_colleague(lucy):  # True
     print(f'{mary.first_name} and {lucy.first_name} are colleagues')
 
 

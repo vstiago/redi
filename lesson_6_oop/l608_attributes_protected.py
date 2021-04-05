@@ -44,12 +44,16 @@ mary = Student('Mary von Neumann', '2010-05-06',
                {'German', 'Math', 'Geography', 'Science'})
 lucy = Student('Lucy Schwarz', '2010-07-08', {'English', 'Math', 'Dance'})
 
+
+# False since all grades are initialized with 0.0
 if john.is_approved():
     print(f'Congrats {john.first_name}')
+
 
 # The protected fields can be accessed (but it's not a good practice)
 print('John grades:', john._grades)
 # John grades: {'German': 0.0, 'Arts': 0.0, 'History': 0.0}
+
 
 # When an attribute is accessed freely it can receive unexpected values
 mary._grades['Math'] = 11.0
@@ -71,7 +75,7 @@ lucy.set_grade('Math', 11.0)
 # Invalid grade 11.0. Should be between 0 and 10.
 
 
-# Don't access the protected attribute directly, but receives the string created
-# from it.
+# Student.grades() don't access the protected attribute directly, but receives
+# the string created from it.
 print('Lucy grades:', lucy.grades())
 # Lucy grades: {'English': 8.3, 'Dance': 6.7, 'Math': 9.4}

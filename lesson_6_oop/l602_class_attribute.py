@@ -22,25 +22,30 @@ lucy.email = 'lucy@redi-school.org'
 print(f'{lucy.first_name} can be contacted at {lucy.email}')
 # Lucy can be contacted at lucy@redi-school.org
 
-# print(f'{john.first_name} can be contacted at {john.email}')
-# AttributeError: 'Student' object has no attribute 'email'
+
+# But it didn't change the others
+print(f'{john.first_name} can be contacted at {john.email}')
+# John can be contacted at default@redi-school.org
+
 
 # Or for all objects that didn't have changed it.
-Student.email = 'default@redi.org'
 for student in [john, mary, lucy]:
     print(f'{student.first_name}:{student.email}')
 # John:default@redi.org
-# Maria:default@redi.org
+# Mary:default@redi.org
 # Lucy:lucy@redi-school.org
+
 
 # Changing the class attribute will be visible if the object does not have an
 # attribute with the same name
 Student.email = 'default@redi.org'
 for student in [john, mary, lucy]:
+    # Note that there is no warning at email now.
     print(f'{student.first_name}:{student.email}')
 # John:default@redi.org
 # Maria:default@redi.org
 # Lucy:lucy@redi-school.org
+
 
 # Changing the attribute for an object doesn't affect the class attribute.
 john.email = 'john@redi.org'
@@ -49,5 +54,3 @@ for student in [john, mary, lucy]:
 # John:john@redi.org
 # Maria:default@redi.org
 # Lucy:lucy@redi-school.org
-
-

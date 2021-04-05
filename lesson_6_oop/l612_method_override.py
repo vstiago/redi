@@ -35,14 +35,14 @@ print(f'John attendance {100 * john.attendance()}%')
 # John attendance 80.0%
 
 
-for value in [False, False, True]:
+for value in [False, False, False, True]:
     lucy.add_attendance(value)
 
 
 # Methods are attributes too. They can be redefined and have custom execution.
 
 print(f'Lucy attendance {100 * lucy.attendance()}%')
-# Lucy attendance 33.33333333333333%
+# Lucy attendance 25.0%
 
 
 # Defining a function that will be called instead.
@@ -64,4 +64,4 @@ print(f'Lucy attendance {100 * lucy.attendance()}%')
 
 # Calling the class method is not changed.
 print(f'Lucy attendance {100 * Student.attendance(lucy)}%')
-# Lucy attendance 33.33333333333333%%
+# Lucy attendance 25.0%

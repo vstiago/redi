@@ -6,8 +6,9 @@ class Student:
         self.courses = courses
 
         # protected attributes
-        self._birthday = birthday
         self._grades = dict([(course, 0.0) for course in courses])
+        # birthday is now a protected attribute.
+        self._birthday = birthday
 
         # private attributes
         self.__attendance = []
@@ -38,18 +39,19 @@ mary = Student('Mary von Neumann', '2010-05-06',
 lucy = Student('Lucy Schwarz', '2010-07-08', {'English', 'Math', 'Dance'})
 
 
-john.birthday = '1880-11-21'
-# Vampires are not allowed.
-
-
+# The code that uses does not does not change.
 print(john.birthday)
 # John birthday accessed!
 # 2010-04-05
 
+john.birthday = '1880-11-21'
+# Vampires are not allowed.
 
 mary.birthday = '2100-05-23'
 # Time travellers are not allowed.
 
+
+# The assignment failed and the attribute didn't change.
 print(mary.birthday)
 # Mary birthday accessed!
 # 2010-05-06
