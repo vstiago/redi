@@ -47,10 +47,12 @@ print('John grades:', john._grades)
 # print('Attendance:', john.__attendance)
 # AttributeError: 'Student' object has no attribute '__attendance'
 
+
 for value in [True, True, True, False, True]:
     john.add_attendance(value)
 
 print(f'John attendance {100 * john.attendance()}%')
+# John attendance 80.0%
 
 
 for value in [False, False, False, True]:
@@ -75,10 +77,10 @@ print(f'Lucy attendance {100 * lucy.attendance()}%')
 # __attribute is expanded to _ClassName__attribute.
 # But please, don't do that!
 print(lucy._Student__attendance)
-# [False, False, True]
+# [False, False, False, True]
 
 
-# It is possible to see all exiting attributes
+# It is possible to see all existing attributes
 print(vars(lucy))
 # {'full_name': 'Lucy Schwarz', 'first_name': 'Lucy', 'birthday': '2010-07-08',
 # 'courses': {'Math', 'Dance', 'English'},
