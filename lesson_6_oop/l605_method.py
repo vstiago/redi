@@ -52,7 +52,7 @@ StudentTuple = namedtuple("StudentTuple", "first_name email courses")
 alice = StudentTuple('Alice', 'alice@gmail.com', {'German', 'Math'})
 
 # It works because the tuple has a field name 'courses'
-if lucy.is_colleagues(alice):
+if lucy.is_colleague(alice):
     print(f'{lucy.first_name} and {alice.first_name} are colleagues')
 
 

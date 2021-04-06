@@ -15,7 +15,6 @@ class Student:
 
     # A line starting with '@' is a decorator, it indicates that the following
     # function has a special behaviour, or is used for a different purpose.
-    # @staticmethod
     @staticmethod
     def from_csv(input_text):
         # csv: comma separated values
@@ -32,7 +31,6 @@ mary = Student('Mary von Neumann', '2010-05-06',
 
 # Creating a object with the from_csv function
 lucy = Student.from_csv('Lucy Schwarz,2010-07-08,English,Math,Dance')
-
 
 print(lucy.first_name, lucy.birthday, lucy.courses)
 # Lucy 2010-07-08 {'Dance', 'Math', 'English'}

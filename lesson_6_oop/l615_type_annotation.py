@@ -18,7 +18,7 @@ class Student:
         self.attendance: List[bool] = []
 
     # class public methods
-    def is_colleagues(self, other) -> bool:
+    def is_colleague(self, other) -> bool:
         course_intersection = self.courses.intersection(other.courses)
         return len(course_intersection) != 0
 
@@ -31,7 +31,7 @@ class Student:
         diff = date.today() - self.birthday
         return floor(diff.days / 365.25)
 
-    def add_attendance(self, new_value: bool):
+    def add_attendance(self, new_value: bool) -> None:
         self.attendance.append(new_value)
 
 
@@ -68,6 +68,8 @@ min_age: int = min([student.age for student in [john, lucy]])
 print(min_age)
 # 10
 
+
+# This generates a warning, but it does not terminate the program.
 max_age: int = '43'
 # Expected type 'int', got 'str' instead
 

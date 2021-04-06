@@ -14,7 +14,7 @@ class Address:
         return f'{self.street} {self.number}\n{self.postal_code} - {self.city}'
 
 
-# Student attributes have all different types: str, date, Address, set, dict
+# All student attributes have different types: str, date, Address, set, dict
 class Student:
     def __init__(self, name, birthday, address, courses):
         # public attributes
