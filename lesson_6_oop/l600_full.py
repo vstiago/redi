@@ -21,9 +21,9 @@ class Student:
     # L603 - class attribute
     email = 'default@redi-school.org'
 
-    # __init__ is called when the object is created, also called instantiating
-    # or initialized
-    # The first parameter is the object, it's called self by convention, but it
+    # __init__ is called when the object is created, also refered as 
+    # instantiating or initialized.
+    # The first parameter is the object, it's named 'self' by convention, but it
     # can have any other name.
     def __init__(self, name: str, birthday: date, address: Address,
                  courses: Set[str]):
