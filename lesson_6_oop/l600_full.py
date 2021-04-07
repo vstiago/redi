@@ -64,8 +64,11 @@ class Student:
     @staticmethod
     def from_csv(input_text):
         # csv: comma separated values
-        # a static method that creates an object is also called 'Factory'
+        # a static method that creates an object is also called 'Factory'.
         csv = input_text.split(',')
+        # date.fromisoformat is a static method of the class date. It's also
+        # used to create an object with parameters different from __init__, 
+        # i.e. date.fromisoformat is a date Factory.
         return Student(csv[0], date.fromisoformat(csv[1]),
                        Address(csv[2], int(csv[3]), int(csv[4]), csv[5]),
                        set(csv[6:]))
@@ -168,6 +171,7 @@ lucy = Student('Lucy Schwarz', date(2010, 7, 8),
                Address('LeopoldStrasse', 13, 80700, 'Munich'),
                {'English', 'Math', 'Dance'})
 
+
 # Public attributes can always be accessed
 print(f'{john.first_name}, {john.birthday}')
 # John, 2010-04-05
@@ -185,9 +189,9 @@ print(f'{mary.full_name}, born in {mary.birthday} aka "{mary.first_name}"')
 
 
 # New attributes can be added to an object
-lucy.personal_email = 'lucy@gmail.org'
+lucy.personal_email = 'lucy@gmail.com'
 print(f'{lucy.first_name} can be contacted at {lucy.personal_email}')
-# Lucy can be contacted at lucy@redi-school.org
+# Lucy can be contacted at lucy@gmail.com
 
 
 # But the other instance does not have it.
@@ -201,7 +205,7 @@ for student in [john, mary, lucy]:
     print(f'{student.first_name}:{student.personal_email}')
 # John:default@redi-school.org
 # Maria:default@redi-school.org
-# Lucy:lucy@redi-school.org
+# Lucy:lucy@gmail.com
 
 
 # Changing the class attribute will be visible if the object does not have an
@@ -211,7 +215,7 @@ for student in [john, mary, lucy]:
     print(f'{student.first_name}:{student.personal_email}')
 # John:default@redi.org
 # Maria:default@redi.org
-# Lucy:lucy@redi-school.org
+# Lucy:lucy@gmail.com
 
 
 # Changing the attribute for an object doesn't affect the class attribute.
@@ -220,7 +224,7 @@ for student in [john, mary, lucy]:
     print(f'{student.first_name}:{student.personal_email}')
 # John:john@redi.org
 # Maria:default@redi.org
-# Lucy:lucy@redi-school.org
+# Lucy:lucy@gmail.com
 
 
 # Attributes can be deleted.
@@ -229,7 +233,7 @@ for student in [john, mary, lucy]:
     print(f'{student.first_name}:{student.personal_email}')
 # John:default@redi.org
 # Maria:default@redi.org
-# Lucy:lucy@redi-school.org
+# Lucy:lucy@gmail.com
 
 
 # So can class attributes.
@@ -241,6 +245,8 @@ del Student.personal_email
 
 # But it doesn't affect the object
 print(f'{lucy.first_name}:{lucy.personal_email}')
+# Lucy:lucy@gmail.com
+
 
 # L602 - Class Attribute
 
@@ -389,7 +395,7 @@ if mary.is_colleague(lucy):  # True
     print(f'{mary.first_name} and {lucy.first_name} are colleagues')
 
 
-# Trying with a tuple
+# Trying with a tuple:
 mark = ('Mark Hoffmann', '2011-02-03', {'Math', 'Science'})
 
 # if mary.is_colleagues(mark):
@@ -397,6 +403,7 @@ mark = ('Mark Hoffmann', '2011-02-03', {'Math', 'Science'})
 # AttributeError: 'tuple' object has no attribute 'courses'
 
 
+# And with a namedtuple:
 StudentTuple = namedtuple("StudentTuple", "first_name email courses")
 alice = StudentTuple('Alice', 'alice@gmail.com', {'German', 'Math'})
 
@@ -489,49 +496,6 @@ lucy.set_grade('Math', 11.0)
 # the string created from it.
 print('Lucy grades:', lucy.grades())
 # Lucy grades: {'English': 8.3, 'Dance': 6.7, 'Math': 9.4}
-
-# Private attributes will generate an error if accessed outside the class.
-# print('Attendance:', john.__attendance)
-# AttributeError: 'Student' object has no attribute '__attendance'
-
-
-for value in [True, True, True, False, True]:
-    john.add_attendance(value)
-
-print(f'John attendance {100 * john.attendance()}%')
-# John attendance 80.0%
-
-
-for value in [False, False, False, True]:
-    lucy.add_attendance(value)
-
-# You can override it locally ...
-lucy.__attendance = [True]
-
-# ... and then reference it ...
-print(lucy.__attendance)
-# [True]
-
-
-# ... but inside the class the value didn't change.
-print(f'Lucy attendance {100 * lucy.attendance()}%')
-# Lucy attendance 25.0%
-
-
-# There is one way to access the private attribute.
-# __attribute is expanded to _ClassName__attribute.
-# But please, don't do that!
-print(lucy._Student__attendance)
-# [False, False, False, True]
-
-
-# It is possible to see all existing attributes
-print(vars(lucy))
-# {'full_name': 'Lucy Schwarz', 'first_name': 'Lucy', 'birthday': '2010-07-08',
-# 'courses': {'Math', 'Dance', 'English'},
-# '_grades': {'Math': 0.0, 'Dance': 0.0, 'English': 0.0},
-# '_Student__attendance': [False, False, False, True],
-# '__attendance': [True]}
 
 
 # L609 - Private
@@ -656,8 +620,6 @@ for value in [False, False, False, True]:
 # Methods are attributes too. They can be redefined and have custom execution.
 
 print(f'Lucy attendance {100 * lucy.attendance()}%')
-
-
 # Lucy attendance 25.0%
 
 
@@ -727,7 +689,7 @@ secret_value = john
 print(type(secret_value))
 # <class '__main__.Student'>
 
-# Some functions only make sense for some type of date.
+# Some functions only make sense for some type of data.
 # abs() works for types like bool, int, float.
 abs(42)
 abs(True)
@@ -746,7 +708,7 @@ abs(True)
 bad_john = Student('John Schneider', date(2010, 4, 5),
                    Address('MarienPlatz', 1, 80500, 'Munich'),
                    ['German', 'Arts', 'History'])
-# Expected type 'set', got 'List[str]' instead
+# Expected type 'Set[str]', got 'List[str]' instead
 
 
 bad_mary = Student('Mary von Neumann', '2010-05-06',
